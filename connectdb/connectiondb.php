@@ -1,12 +1,26 @@
 <?php
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '123';
-    $dbName = 'rent_cars';
+    require_once '/MOSTAFA/briefs/RentCars_OOP/connectdb/info.php';
 
-    $conn = mysqli_connect($servername, $username, $password, $dbName);
+    class DB {
+        public $servername;
+        public $username;
+        public $password;
+        public $dbName;
 
-    if(!$conn) {
-        die("Connection failed" . mysqli_connect_error());
+        public function __construct() {
+            $this->servername = 'localhost';
+            $this->username = 'root';
+            $this->password = 'password';
+            $this->dbName = 'rent_cars';
+        }
+
+        public function connect() {
+            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbName);
+
+            if($conn) {
+                return $conn;
+            }
+        }
+
     }
 ?>
