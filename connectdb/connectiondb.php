@@ -1,6 +1,4 @@
 <?php
-    require_once '/MOSTAFA/briefs/RentCars_OOP/connectdb/info.php';
-
     class DB {
         public $servername;
         public $username;
@@ -8,10 +6,11 @@
         public $dbName;
 
         public function __construct() {
-            $this->servername = 'localhost';
-            $this->username = 'root';
-            $this->password = 'password';
-            $this->dbName = 'rent_cars';
+            $config = require __DIR__ . '/info.php';
+            $this->servername = $config['localhost'];
+            $this->username = $config['username'];
+            $this->password = $config['password'];
+            $this->dbName = $config['dbName'];
         }
 
         public function connect() {
