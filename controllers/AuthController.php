@@ -26,6 +26,16 @@ class AuthController {
 
         return $result->execute($params);
     }
+
+    public function user() {
+        $db = new DB();
+        $conn = $db->connect();
+
+        $existUser = $conn->query("SELECT email, password, role FROM users WHERE email = '$this->email'");
+        $resultUser = $existUser->fetch_assoc();
+
+        return $resultUser;
+    }
 }
 
 ?>
