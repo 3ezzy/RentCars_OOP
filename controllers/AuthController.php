@@ -7,27 +7,31 @@ class AuthController {
     public $email;
     public $password;
     public $confirm_password;
+    public $address;
+    public $numberPhone;
     public $role = 0;
 
-    public function __construct($username, $email, $password, $confirm_password)
+    public function __construct($username, $email, $password, $confirm_password, $address, $numberPhone)
     {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->confirm_password = $confirm_password;
+        $this->address = $address;
+        $this->numberPhone = $numberPhone;
     }
 
     public function register() {
         $db = new DB();
         $conn = $db->connect();
 
-        $result = $conn->prepare("INSERT INTO users(username, email, password, role) VALUES(?,?,?,?)");
-        $params = [$this->username, $this->email, password_hash($this->password, PASSWORD_BCRYPT), $this->role];
+        $result = $conn->prepare("INSERT INTO users(username, email, password, address, numberPhone, role) VALUES(?,?,?,?,?,?)");
+        $params = [$this->username, $this->email, password_hash($this->password, PASSWORD_BCRYPT), $this->address, $this->numberPhone, $this->role];
 
         return $result->execute($params);
     }
 
-    public function user() {
+    public function login() {
         $db = new DB();
         $conn = $db->connect();
 

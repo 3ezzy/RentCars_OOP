@@ -6,10 +6,12 @@ require_once __DIR__ . '/../../controllers/AuthController.php';
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
+        $address = $_POST['address'];
+        $numberPhone = $_POST['numberPhone'];
 
-        $auth = new AuthController($username, $email, $password, $confirm_password);
+        $auth = new AuthController($username, $email, $password, $confirm_password, $address, $numberPhone);
         if($auth->register()) {
-            header('location: register.php');
+            header('location: login.php');
         }
     }
 ?>
@@ -28,30 +30,39 @@ require_once __DIR__ . '/../../controllers/AuthController.php';
 </head>
 <body class="bg-[#16113a] font-['Poppins']">
 
-    <div class="bg-[#2a2455] w-2/5 mx-auto mt-32 rounded-md p-7">
-        <h1 class="text-center text-white font-semibold text-5xl mb-6">Sgin up</h1>
+    <form action="./register.php" method="POST">
+        <div class="bg-[#2a2455] w-5/6 sm:w-4/5 lg:w-3/6 mx-auto mt-32 rounded-md p-4 md:p-7">
+            <h1 class="text-center text-white font-semibold text-5xl mb-6">Sgin up</h1>
         
-        <form action="./register.php" method="POST">
-            <div class="flex flex-col mb-4">
-                <label class="text-white mb-1" for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" class="p-2 rounded-md">
-                
+            <div class="gap-5 w-full sm:flex sm:flex-row">
+                <div class="flex flex-col mb-4 sm:w-2/4">
+                    <label class="text-white mb-1" for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" class="p-2 rounded-md">
+                </div>
+                <div class="flex flex-col mb-4 sm:w-2/4">
+                    <label class="text-white mb-1" for="email">Email</label>
+                    <input type="text" id="email" name="email" placeholder="Enter your email" class="p-2 rounded-md">
+                </div>
             </div>
-            <div class="flex flex-col mb-4">
-                <label class="text-white mb-1" for="email">Email</label>
-                <input type="text" id="email" name="email" placeholder="Enter your email" class="p-2 rounded-md">
-               
+
+            <div class="gap-5 w-full sm:flex sm:flex-row">
+                <div class="flex flex-col mb-4 sm:w-2/4">
+                    <label class="text-white mb-1" for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter your address" class="p-2 rounded-md">
+                </div>
+                <div class="flex flex-col mb-4 sm:w-2/4">
+                    <label class="text-white mb-1" for="numberPhone">NumberPhone</label>
+                    <input type="text" id="numberPhone" name="numberPhone" placeholder="Enter your number phone" class="p-2 rounded-md">
+                </div>
             </div>
 
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="password">Password</label>
                 <input type="text" id="password" name="password" placeholder="Enter your password" class="p-2 rounded-md">
-                
             </div>
             <div class="flex flex-col">
                 <label class="text-white mb-1" for="confirm_password">Confirm Password</label>
                 <input type="text" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="p-2 rounded-md">
-              
             </div>
             <button type="submit" class="mt-6 px-4 py-2 bg-[#5543d9] hover:bg-[#3c3286] text-white rounded-md">Sgin up</button>
 
@@ -61,8 +72,8 @@ require_once __DIR__ . '/../../controllers/AuthController.php';
                     <a href="/views/auth/login.php" class="text-blue-600 hover:text-blue-400 ml-1">Login</a>&nbsp;
                 </span>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
     
 </body>
 </html>
