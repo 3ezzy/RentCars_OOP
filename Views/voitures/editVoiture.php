@@ -10,9 +10,8 @@
             });
         </script>";
 
-        $queryVoiture = mysqli_query($conn, "SELECT * FROM voitures WHERE id = $getId");
-
-        $resultVoiture = mysqli_fetch_assoc($queryVoiture);
+        $voiture = new VoitureController();
+        $resultVoiture = $voiture->getVoitureById($getId);
     }
 
 ?>

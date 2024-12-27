@@ -30,6 +30,19 @@ class VoitureController {
         return $result->execute($params);
     }
 
+    public function getVoitureById($id) {
+        $db = new DB();
+        $conn = $db->connect();
+        $sql = "SELECT * FROM voitures WHERE id = $id";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return [];
+        }
+    }
+
 }
 
 
