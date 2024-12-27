@@ -1,24 +1,19 @@
 <?php
 
 require __DIR__ . "/../connectdb/connectiondb.php";
+require __DIR__ . "/./UserManager.php";
 
-class AuthController {
-    public $username;
-    public $email;
-    public $password;
-    public $confirm_password;
-    public $address;
-    public $numberPhone;
-    public $role = 0;
+class AuthController extends UserManager {
+    private $password;
+    private $confirm_password;
 
-    public function __construct($username, $email, $password, $confirm_password, $address, $numberPhone)
+    public function __construct($username, $email, $numberPhone, $address, $password, $confirm_password, $role)
     {
-        $this->username = $username;
-        $this->email = $email;
+
+        parent::__construct($username, $email, $numberPhone, $address, $role);
         $this->password = $password;
         $this->confirm_password = $confirm_password;
-        $this->address = $address;
-        $this->numberPhone = $numberPhone;
+        $this->role = $role;
     }
 
     public function register() {
@@ -29,7 +24,7 @@ class AuthController {
         $params = [$this->username, $this->email, password_hash($this->password, PASSWORD_BCRYPT), $this->address, $this->numberPhone, $this->role];
 
         return $result->execute($params);
-    }
+    } 
 
     public function login() {
         $db = new DB();

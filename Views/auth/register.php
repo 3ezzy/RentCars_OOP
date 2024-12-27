@@ -8,8 +8,9 @@ require_once __DIR__ . '/../../controllers/AuthController.php';
         $confirm_password = $_POST['confirm_password'];
         $address = $_POST['address'];
         $numberPhone = $_POST['numberPhone'];
+        $role = 0;
 
-        $auth = new AuthController($username, $email, $password, $confirm_password, $address, $numberPhone);
+        $auth = new AuthController($username, $email, $password, $confirm_password, $address, $numberPhone, $role);
         if($auth->register()) {
             header('location: login.php');
         }

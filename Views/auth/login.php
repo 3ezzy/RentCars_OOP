@@ -6,7 +6,7 @@ session_start();
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $authLogin = new AuthController("",$email, $password, "", "", "");
+        $authLogin = new AuthController("",$email, $password, "", "", "", "");
         $user = $authLogin->login();
 
         if($user && password_verify($password, $user['password'])) {
