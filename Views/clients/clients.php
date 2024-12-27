@@ -77,7 +77,7 @@
                 showAlertAdd.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         } else if($alert == 'success_update') {
@@ -86,7 +86,7 @@
                 showAlertEdit.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         } else {
@@ -95,7 +95,7 @@
                 showAlertDelete.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         }
