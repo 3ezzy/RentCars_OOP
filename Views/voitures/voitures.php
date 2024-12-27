@@ -1,13 +1,17 @@
 <?php 
     require_once('../../isOwner/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require __DIR__ . '/../../controllers/VoitureController.php';
+
+    $voitures = new VoitureController();
+    $resultVoitures = $voitures->getAllVoitures();
     
-    // select table voitures
-    $voitures = "SELECT * FROM voitures";
-    $resultVoitures = mysqli_query($conn, $voitures);
 ?>
 
-<?php include('../layout/_HEAD.php'); ?>
+<?php 
+include
+('../layout/_HEAD.php'); 
+?>
+
 
     <div class="md:ml-[75px] lg:ml-0 md:col-span-10 lg:col-span-8 row-span-1 py-4 px-6 bg-[#2a2455] rounded-md text-white flex justify-between">
         <button class="showFormAdd py-2 px-4 bg-[#423c6b] rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-user-plus"></i> Add Client</button>
@@ -30,7 +34,7 @@
                 <tbody>
                     <!-- display all voitures -->
                     <?php if($resultVoitures) { ?>
-                        <?php $index = 0; while($voiture = mysqli_fetch_assoc($resultVoitures)) { ?>
+                        <?php $index = 0; foreach($resultVoitures as $voiture) { ?>
                             <tr class="border-t-[0.2px] border-gray-500 hover:bg-[#585286]">
                                 <td class="px-2 py-4"><?php echo $index +=1 ?></td>
                                 <td class="px-2 py-4"><?php echo $voiture['numImmatriculation'] ?></td>
