@@ -12,6 +12,7 @@
 
         $voiture = new VoitureController();
         $resultVoiture = $voiture->getVoitureById($getId);
+        
     }
 
 ?>

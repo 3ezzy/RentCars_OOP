@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $annee = $_POST['annee'];
     $voiture = new VoitureController();
     $addVoiture = $voiture->CreatVoiture($immatriculation, $marque, $modele, $annee);
-    header('Location: voitures.php');
+    header('Location: voitures.php?alert=success_add');
 }
 
 
