@@ -7,7 +7,7 @@
 
         public function __construct() {
             $config = require __DIR__ . '/info.php';
-            $this->servername = $config['localhost'];
+            $this->servername = $config['servername'];
             $this->username = $config['username'];
             $this->password = $config['password'];
             $this->dbName = $config['dbName'];
