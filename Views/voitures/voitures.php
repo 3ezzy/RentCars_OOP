@@ -8,8 +8,7 @@
 ?>
 
 <?php 
-include
-('../layout/_HEAD.php'); 
+include ('../layout/_HEAD.php'); 
 ?>
 
 

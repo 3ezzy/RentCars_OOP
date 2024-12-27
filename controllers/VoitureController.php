@@ -20,7 +20,20 @@ class VoitureController {
         }
     }
 
+    public function CreatVoiture($numImmatriculation, $marque, $modele, $annee) {
+        $db = new DB();
+        $conn = $db->connect();
+        $sql = "INSERT INTO voitures(numImmatriculation, marque, modele, annee) VALUES(?,?,?,?)";
+        $result = $conn->prepare($sql);
+        $params = [$numImmatriculation, $marque, $modele, $annee];
+
+        return $result->execute($params);
+    }
+
 }
+
+
+
 
 
 ?>
