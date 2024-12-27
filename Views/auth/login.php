@@ -1,8 +1,27 @@
-<?php 
+<?php
 session_start();
+    require_once __DIR__. '/../../controllers/AuthController.php';
 
-session_destroy();
-    
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $authLogin = new AuthController("",$email, $password, "");
+        $user = $authLogin->user();
+
+        if($user && password_verify($password, $user['password'])) {
+            if($user['role'] == 1) {
+                $_SESSION['user'] = $user;
+                header('location: ../dashboard.php');
+            } else{
+                $_SESSION['user'] = $user;
+                header('location: ../voitures/voitures.php');
+            }
+        } else {
+            echo "password or email not correct";
+        }
+    }
+
 ?>
     
 <!DOCTYPE html>
@@ -20,37 +39,17 @@ session_destroy();
 <body class="bg-[#16113a] font-['Poppins']">
     <div class="bg-[#2a2455] w-2/5 mx-auto mt-32 rounded-md p-7">
         <h1 class="text-center text-5xl font-semibold text-white mb-4">Sgin in</h1>
-        <form action="./existOwner.php" method="post">
+        <form action="./login.php" method="post">
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="email">Email</label>
                 <input type="text" id="email" name="email" placeholder="Enter your email" class="p-2 rounded-md">
-                <?php
-                    if(isset($_SESSION['validationEmailPass'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmailPass']."</p>";
-                    }
-
-                    if(isset($_SESSION['validateCorrectEmailPass'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validateCorrectEmailPass']."</p>";
-                    }
-
-                    if(isset($_SESSION['validationEmail'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmail']."</p>";
-                    }
-                ?>
+                
             </div>
 
             <div class="flex flex-col">
                 <label class="text-white mb-1" for="">Password</label>
                 <input type="text" name="password" placeholder="Enter your password" class="p-2 rounded-md">
-                <?php
-                    if(isset($_SESSION['validationEmailPass'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmailPass']."</p>";
-                    }
-
-                    if(isset($_SESSION['validateCorrectEmailPass'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validateCorrectEmailPass']."</p>";
-                    }
-                ?>
+                
             </div>
             <button type="submit" class="mt-6 px-4 py-2 bg-[#5543d9] hover:bg-[#3c3286] rounded-md text-white">Sgin in</button>
 
