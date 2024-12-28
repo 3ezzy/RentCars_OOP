@@ -27,5 +27,15 @@ class UserManager extends UserController {
 
         return $update->execute();
     }
+
+    public function destroy() {
+        $db = new DB();
+        $conn = $db->connect();
+       
+        $destroy = $conn->prepare("DELETE FROM users WHERE id = ?");
+        $destroy->bind_param("i", $this->id);
+
+        return $destroy->execute();
+    }
 }
 ?>

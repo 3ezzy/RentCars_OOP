@@ -46,7 +46,7 @@
                                     <a href="./clients.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-solid fa-user-pen"></i>&nbsp;Edit
                                     </a>
-                                    <a href="./users.php?idDeleteUser=<?php echo $client['id'] ?>" class="showFormDelete bg-red-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-red-500 cursor-pointer">
+                                    <a href="./clients.php?idDeleteUser=<?php echo $client['id'] ?>" class="showFormDelete bg-red-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-red-500 cursor-pointer">
                                         <i class="fa-solid fa-user-minus"></i>&nbsp;Delete
                                     </a>
                                 </td>

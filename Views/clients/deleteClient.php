@@ -1,6 +1,6 @@
 <?php
     require_once('../../isOwner/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/UserManager.php';
     //  check if the id exist in url and get it
     if(isset($_GET['idDeleteUser'])) {
         $getId = $_GET['idDeleteUser'];
@@ -11,23 +11,20 @@
             });
         </script>";
 
-        // get client when id in url equal id of client
-        $queryClient = mysqli_query($conn, "SELECT id, name FROM clients WHERE id = $getId");
+        $user = new UserManager("", "", "", "", "", $getId);
 
-        $resultgetClient = mysqli_fetch_assoc($queryClient);
-        
- 
+        $resultgetClient = $user->show();
     }
 
     if(isset($_POST['idUser'])) {
         $idUser = $_POST['idUser'];
 
-        $queryDelete = "DELETE FROM clients WHERE id = ?";
-        $params = array($idUser);
-        $resultQueryDelete = $conn->prepare($queryDelete);
+        $user = new UserManager("", "", "", "", "", $idUser);
+
+        $resultDelete = $user->destroy();
         
-        if($resultQueryDelete->execute($params)) {
-            header('location:users.php?alert=success_delete');
+        if($resultDelete) {
+            header('location:clients.php?alert=success_delete');
         }
     }
 ?>
@@ -45,7 +42,7 @@
         
         <input type="hidden" name="idUser" value="<?php echo $resultgetClient['id'] ?>">
         <div class="w-full p-3 bg-gray-200 rounded-md text-gray-700">
-            <h1><?php echo $resultgetClient['name'] ?></h1>
+            <h1><?php echo $resultgetClient['username'] ?></h1>
         </div>
        
         <div class="mt-10 flex justify-evenly">
@@ -59,7 +56,7 @@
     const closeDelete = document.querySelector('#closeDelete');
     
     closeDelete.addEventListener('click', () => {
-        window.location.href = 'users.php';
+        window.location.href = 'clients.php';
     });
 
 </script>
