@@ -1,9 +1,9 @@
 <?php
 
 require __DIR__ . "/../connectdb/connectiondb.php";
-require __DIR__ . "/./UserManager.php";
+require __DIR__ . "/UserController.php";
 
-class AuthController extends UserManager {
+class AuthController extends UserController {
     private $password;
     private $confirm_password;
 
