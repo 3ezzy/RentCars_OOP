@@ -29,7 +29,7 @@
     }
 ?>
 
-<div class="formDelete absolute z-10 w-1/4 bg-white p-5 top-20 rounded-md hidden text-center">
+<div class="formDelete absolute z-10 w-4/5 md:w-2/5 lg:w-1/4 bg-white p-5 top-20 rounded-md hidden text-center">
     <div class="w-full flex justify-center mb-10 mt-5">
         <div class="w-28 h-28 rounded-full border-[4px] border-yellow-500 flex justify-center items-center">
             <span class="text-6xl text-yellow-500">!</span>
