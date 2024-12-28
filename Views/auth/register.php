@@ -1,6 +1,17 @@
-<?php session_start();
+<?php 
+require_once __DIR__ . '/../../controllers/AuthController.php';
 
-    session_destroy()
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $confirm_password = $_POST['confirm_password'];
+
+        $auth = new AuthController($username, $email, $password, $confirm_password);
+        if($auth->register()) {
+            header('location: register.php');
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,56 +31,27 @@
     <div class="bg-[#2a2455] w-2/5 mx-auto mt-32 rounded-md p-7">
         <h1 class="text-center text-white font-semibold text-5xl mb-6">Sgin up</h1>
         
-        <form action="./newOwner.php" method="post">
+        <form action="./register.php" method="POST">
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" class="p-2 rounded-md">
-                <?php
-                    if(isset($_SESSION['validationUsername'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationUsername']."</p>";
-                    }
-                ?>
+                
             </div>
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="email">Email</label>
                 <input type="text" id="email" name="email" placeholder="Enter your email" class="p-2 rounded-md">
-                <?php
-                    if(isset($_SESSION['validationEmpEmail'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmpEmail']."</p>";
-                    }
-
-                    if(isset($_SESSION['validationEmail'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmail']."</p>";
-                    }
-
-                    if(isset($_SESSION['validationExistEmail'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationExistEmail']."</p>";
-                    }
-                ?>
+               
             </div>
 
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="password">Password</label>
                 <input type="text" id="password" name="password" placeholder="Enter your password" class="p-2 rounded-md">
-                <?php
-                    if(isset($_SESSION['validationPassword'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationPassword']."</p>";
-                    }
-
-                    if(isset($_SESSION['validationEmpPassword'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmpPassword']."</p>";
-                    }
-                ?>
+                
             </div>
             <div class="flex flex-col">
                 <label class="text-white mb-1" for="confirm_password">Confirm Password</label>
                 <input type="text" id="confirm_password" name="confirm_password" placeholder="Confirm your password" class="p-2 rounded-md">
-                <?php
-                 
-                    if(isset($_SESSION['validationEmpConfirmPassword'])) {
-                        echo "<p class='text-red-500 mt-1'>".$_SESSION['validationEmpConfirmPassword']."</p>";
-                    }
-                ?>
+              
             </div>
             <button type="submit" class="mt-6 px-4 py-2 bg-[#5543d9] hover:bg-[#3c3286] text-white rounded-md">Sgin up</button>
 

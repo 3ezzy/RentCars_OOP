@@ -1,12 +1,25 @@
 <?php
-    $servername = 'localhost';
-    $username = 'root';
-    $password = '123';
-    $dbName = 'rent_cars';
+    class DB {
+        public $servername;
+        public $username;
+        public $password;
+        public $dbName;
 
-    $conn = mysqli_connect($servername, $username, $password, $dbName);
+        public function __construct() {
+            $config = require __DIR__ . '/info.php';
+            $this->servername = $config['servername'];
+            $this->username = $config['username'];
+            $this->password = $config['password'];
+            $this->dbName = $config['dbName'];
+        }
 
-    if(!$conn) {
-        die("Connection failed" . mysqli_connect_error());
+        public function connect() {
+            $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbName);
+
+            if($conn) {
+                return $conn;
+            }
+        }
+
     }
 ?>

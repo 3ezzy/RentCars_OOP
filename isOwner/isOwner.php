@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-     if(!isset($_SESSION['owner'])) {
+     if(!isset($_SESSION['user'])) {
          header('location:/views/auth/login.php');
      }
 
