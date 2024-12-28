@@ -1,10 +1,10 @@
 <?php
     require_once('../../isOwner/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/ClientController.php';
+
+    $clients = new ClientController();
+    $resultClients = $clients->index();
     
-    // select table users
-    $clients = "SELECT * FROM clients";
-    $resultClients = mysqli_query($conn, $clients);
 ?>
 
 <?php include('../layout/_HEAD.php'); ?>
@@ -21,25 +21,32 @@
                     <tr class="bg-[#191444]">
                         <th class="p-4">ID</th>
                         <th class="p-4">Name</th>
+                        <th class="p-4">Email</th>
                         <th class="p-4">Address</th>
                         <th class="p-4">Number Phone</th>
+                        <th class="p-4">Role</th>
                         <th class="p-4">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- display all users -->
-                    <?php if($resultClients) { ?>
-                        <?php $index = 0; while($client = mysqli_fetch_assoc($resultClients)) { ?>
+                    <?php if(isset($resultClients)) { ?>
+                        <?php $index = 0; foreach($resultClients as $client) { ?>
                             <tr class="border-t-[0.2px] border-gray-500 hover:bg-[#585286]">
                                 <td class="px-2 py-4"><?php echo $index +=1 ?></td>
-                                <td class="px-2 py-4"><?php echo $client['name'] ?></td>
+                                <td class="px-2 py-4"><?php echo $client['username'] ?></td>
+                                <td class="px-2 py-4"><?php echo $client['email'] ?></td>
                                 <td class="px-2 py-4"><?php echo $client['address'] ?></td>
                                 <td class="px-2 py-4"><?php echo $client['numberPhone'] ?></td>
                                 <td class="px-2 py-4">
-                                    <a href="./users.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
+                                    
+                                    <?php echo ($client['role'] == 0) ? '<span class="bg-green-600 rounded-full px-2 text-sm">User</span>' : '<span class="bg-purple-600 rounded-full px-2 text-sm">Admin</span>' ?>
+                                </td>
+                                <td class="px-2 py-4">
+                                    <a href="./clients.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-solid fa-user-pen"></i>&nbsp;Edit
                                     </a>
-                                    <a href="./users.php?idDeleteUser=<?php echo $client['id'] ?>" class="showFormDelete bg-red-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-red-500 cursor-pointer">
+                                    <a href="./clients.php?idDeleteUser=<?php echo $client['id'] ?>" class="showFormDelete bg-red-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-red-500 cursor-pointer">
                                         <i class="fa-solid fa-user-minus"></i>&nbsp;Delete
                                     </a>
                                 </td>
@@ -70,7 +77,7 @@
                 showAlertAdd.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         } else if($alert == 'success_update') {
@@ -79,7 +86,7 @@
                 showAlertEdit.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         } else {
@@ -88,7 +95,7 @@
                 showAlertDelete.classList.remove('hidden')
 
                 setTimeout(() => {
-                    window.location.href = 'users.php'
+                    window.location.href = 'clients.php'
                 }, 3000)
             </script>";
         }
