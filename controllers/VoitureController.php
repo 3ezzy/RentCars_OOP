@@ -53,6 +53,15 @@ class VoitureController {
         return $result->execute($params);
     }
 
+    public function deleteVoiture($id) {
+        $db = new DB();
+        $conn = $db->connect();
+        $sql = "DELETE FROM voitures WHERE id = $id";
+        $result = $conn->query($sql);
+
+        return $result;
+    }
+
 }
 
 
