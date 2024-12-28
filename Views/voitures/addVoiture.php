@@ -1,8 +1,27 @@
-<?php  require_once('../../isOwner/isOwner.php'); ?>
+
+<?php  
+
+
+
+require_once('../../isOwner/isOwner.php');
+require_once __DIR__.('/../../controllers/VoitureController.php');
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $immatriculation = $_POST['immatriculation'];
+    $marque = $_POST['marque'];
+    $modele = $_POST['modele'];
+    $annee = $_POST['annee'];
+    $voiture = new VoitureController();
+    $addVoiture = $voiture->CreatVoiture($immatriculation, $marque, $modele, $annee);
+    header('Location: voitures.php?alert=success_add');
+}
+
+
+?>
 
 <div class="formAdd absolute z-10 w-2/5 bg-white p-5 top-20 rounded-md hidden">
     <h1 class="text-2xl font-semibold text-center mb-5">Add New Voiture</h1>
-    <form action="./insertVoiture.php" method="POST">
+    <form action="./addVoiture.php" method="POST">
         <div class="flex gap-3 justify-between mb-4">
             <div class="flex flex-col w-2/4">
                 <label class="ml-2" for="immatriculation">Number Immatriculation <span class="text-red-600">*</span></label>

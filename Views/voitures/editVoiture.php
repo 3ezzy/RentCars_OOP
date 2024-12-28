@@ -1,19 +1,18 @@
 <?php
-     require_once('../../isOwner/isOwner.php');
-    if(isset($_GET['idEditVoiture'])) {
-        $getId = $_GET['idEditVoiture'];
+require_once('../../isOwner/isOwner.php');
+if (isset($_GET['idEditVoiture'])) {
+    $getId = $_GET['idEditVoiture'];
 
-        echo "<script>
+    echo "<script>
             document.addEventListener('DOMContentLoaded', () => {
                 const formEdit = document.querySelector('.formEdit');
                 formEdit.classList.remove('hidden');
             });
         </script>";
 
-        $queryVoiture = mysqli_query($conn, "SELECT * FROM voitures WHERE id = $getId");
-
-        $resultVoiture = mysqli_fetch_assoc($queryVoiture);
-    }
+    $voiture = new VoitureController();
+    $resultVoiture = $voiture->getVoitureById($getId);
+}
 
 ?>
 
@@ -48,7 +47,7 @@
 
 <script>
     const closeEdit = document.querySelector('#closeEdit');
-    
+
     closeEdit.addEventListener('click', () => {
         window.location.href = 'voitures.php';
     });

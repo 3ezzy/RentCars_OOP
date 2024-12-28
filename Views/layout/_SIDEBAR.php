@@ -29,8 +29,8 @@
     <div class="image flex items-center mb-10">
         <?php echo "<img class='rounded-full bg-[#423c6b] w-10 h-10 border-2 border-[#7361ff]' src='../../src/img/images_sidebar/photo youcode.jpg' alt=''>" ?>
         <div class="ml-3">
-            <h1 class="hide text-sm -mb-1"><?php echo $_SESSION['owner']['username'] ?></h1>
-            <span class="hide text-gray-400 text-[12px]"><?php echo $_SESSION['owner']['email'] ?></span>
+            <h1 class="hide text-sm -mb-1"><?php echo $_SESSION['user']['username'] ?></h1>
+            <span class="hide text-gray-400 text-[12px]"><?php echo $_SESSION['user']['email'] ?></span>
         </div>
     </div>
     
@@ -47,7 +47,7 @@
 
     <h1 class="hide">Pages</h1>
     <div class="flex flex-col mt-2 mb-4">
-        <a class="p-2 mb-1 hover:bg-[#595480] rounded-sm flex items-center <?php if($page == '/views/users/users.php') echo 'bg-[#595480]' ?>" href="/views/users/users.php">
+        <a class="p-2 mb-1 hover:bg-[#595480] rounded-sm flex items-center <?php if($page == '/views/clients/clients.php') echo 'bg-[#595480]' ?>" href="/views/clients/clients.php">
         <?php echo "<img class='p-1 bg-emerald-600 rounded-md mr-4' width='26' src='../../src/img/images_sidebar/users.svg' alt=''>" ?>
             <span class="hide">
                 Clients

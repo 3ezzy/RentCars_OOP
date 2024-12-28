@@ -8,7 +8,7 @@
         </div>
     </div>
     <?php 
-        if($page == '/views/users/users.php') {
+        if($page == '/views/clients/clients.php') {
             echo "<h1 class='text-lg font-semibold text-center'>Client added succesfuly</h1>";
         } else if($page == '/views/voitures/voitures.php') {
             echo "<h1 class='text-2xl font-semibold text-center'>Voiture added succesfuly</h1>";
