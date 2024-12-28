@@ -1,18 +1,31 @@
 <?php
+    require_once __DIR__ . '/../connectdb/connectiondb.php';
+    require_once __DIR__ . '/UserController.php';
+class UserManager extends UserController {
+    private $id;
 
-class UserManager {
-    protected $username;
-    protected $email;
-    protected $address;
-    protected $numberPhone;
-    protected $role;
+    public function __construct($username, $email, $address, $numberPhone, $role, $id)
+    {
+        parent::__construct($username, $email, $address, $numberPhone, $role);
+        $this->id = $id;
+    }
+    
+    public function show() {
+        $db = new DB();
+        $conn = $db->connect();
+        $result = $conn->query("SELECT id, username, email, address, numberPhone FROM users WHERE id = $this->id");
 
-    public function __construct($username, $email, $address, $numberPhone, $role) {
-        $this->username = $username;
-        $this->email = $email;
-        $this->address = $address;
-        $this->numberPhone = $numberPhone;
-        $this->role = $role;
+        return $result->fetch_assoc();
+    }
+
+    public function update() {
+        $db = new DB();
+        $conn = $db->connect();
+       
+        $update = $conn->prepare("UPDATE users SET username = ?, email = ?, address = ?, numberPhone = ? WHERE id = ?");
+        $update->bind_param("ssssi", $this->username, $this->email, $this->address, $this->numberPhone, $this->id);
+
+        return $update->execute();
     }
 }
 ?>

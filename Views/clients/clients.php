@@ -43,7 +43,7 @@
                                     <?php echo ($client['role'] == 0) ? '<span class="bg-green-600 rounded-full px-2 text-sm">User</span>' : '<span class="bg-purple-600 rounded-full px-2 text-sm">Admin</span>' ?>
                                 </td>
                                 <td class="px-2 py-4">
-                                    <a href="./users.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
+                                    <a href="./clients.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-solid fa-user-pen"></i>&nbsp;Edit
                                     </a>
                                     <a href="./users.php?idDeleteUser=<?php echo $client['id'] ?>" class="showFormDelete bg-red-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-red-500 cursor-pointer">

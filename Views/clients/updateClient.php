@@ -1,19 +1,18 @@
 <?php
      require_once('../../isOwner/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/UserManager.php';
 
-    // get all values
-    $getId = isset($_POST['idUser']) ? $_POST['idUser'] : 0;
-    $updateName = isset($_POST['updateName']) ? $_POST['updateName'] : "";
-    $updateAddress = isset($_POST['updateAddress']) ? $_POST['updateAddress'] : "";
-    $updatePhone = isset($_POST['updatePhone']) ? $_POST['updatePhone'] : "";
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $getId = $_POST['idUser'];
+        $updateName = $_POST['updateName'];
+        $updateEmail = $_POST['updateEmail'];
+        $updateAddress = $_POST['updateAddress'];
+        $updatePhone = $_POST['updatePhone'];
 
-    // update information client
-    $updateClient = "UPDATE clients SET name = ?, address = ?, numberPhone = ? WHERE id = ?";    
-    $params = array($updateName, $updateAddress, $updatePhone, $getId);
-    $resultUpdateClient = $conn->prepare($updateClient);
-    
-    if($resultUpdateClient->execute($params)) {
-        header('location:users.php?alert=success_update');
+        $user = new UserManager($updateName, $updateEmail, $updateAddress, $updatePhone, "", $getId);
+
+        if($user->update($getId)) {
+            header('location:clients.php?alert=success_update');
+        }
     }
 ?>
