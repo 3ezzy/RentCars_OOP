@@ -64,7 +64,7 @@
             </div>
             <div class="flex flex-col mt-4">
                 <label class="ml-2" for="">Duree</label>
-                <input class="inputDuree" type="hidden" name="duree">
+                <input class="inputDuree" type="hidden" name="duree" value="<?php echo $resultContrat['duree'] ?>">
                 <p class="duree p-2 bg-gray-300 rounded-md"><?php echo $resultContrat['duree'] ?></p>
             </div>
             <div class="mt-5 flex justify-between">
