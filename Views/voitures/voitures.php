@@ -31,10 +31,13 @@ include ('../layout/_HEAD.php');
                 <thead>
                     <tr>
                         <th class="p-4">ID</th>
+                        <th class="p-4">image</th>
                         <th class="p-4">N° Immatriculation</th>
                         <th class="p-4">Marque</th>
                         <th class="p-4">Modele</th>
                         <th class="p-4">Anne</th>
+                        <th class="p-4">Price / hour</th>
+                        <th class="p-4">Status</th>
                         <th class="p-4">Actions</th>
                     </tr>
                 </thead>
@@ -43,11 +46,17 @@ include ('../layout/_HEAD.php');
                     <?php if($resultVoitures) { ?>
                         <?php $index = 0; foreach($resultVoitures as $voiture) { ?>
                             <tr class="border-t-[0.2px] border-gray-500 hover:bg-[#585286]">
-                                <td class="px-2 py-4"><?php echo $index +=1 ?></td>
+                                <td class="px-2 py-4"> <?php echo $index +=1 ?></td>
+                                <td class="px-2 py-4 flex justify-center"><img width="60" src="../../src/img/cars/<?php echo $voiture['image'] ?>" alt=""></td>
                                 <td class="px-2 py-4"><?php echo $voiture['numImmatriculation'] ?></td>
                                 <td class="px-2 py-4"><?php echo $voiture['marque'] ?></td>
                                 <td class="px-2 py-4"><?php echo $voiture['modele'] ?></td>
                                 <td class="px-2 py-4"><?php echo $voiture['annee'] ?></td>
+                                <td class="px-2 py-4 text-green-400">$<?php echo $voiture['priceHour'] ?></td>
+                                <td class="px-2 py-4">
+                                    <?php echo ($voiture['status'] == 0) ? '<span class="bg-red-600 rounded-full px-2 text-sm">Unvailable</span>' : '<span class="bg-green-600 rounded-full px-2 text-sm">Available</span>' ?>
+                                </td>
+                                
                                 <td class="px-2 py-4 min-w-60">
                                     <a href="./voitures.php?idEditVoiture=<?php echo $voiture['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit

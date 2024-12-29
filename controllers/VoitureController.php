@@ -5,8 +5,6 @@ require __DIR__ . '/../connectdb/connectiondb.php';
 
 class VoitureController {
 
-    
-
     public function getAllVoitures() {
         $db = new DB();
         $conn = $db->connect();
@@ -20,12 +18,12 @@ class VoitureController {
         }
     }
 
-    public function CreatVoiture($numImmatriculation, $marque, $modele, $annee) {
+    public function CreatVoiture($numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar) {
         $db = new DB();
         $conn = $db->connect();
-        $sql = "INSERT INTO voitures(numImmatriculation, marque, modele, annee) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO voitures(numImmatriculation, marque, modele, annee, priceHour, image) VALUES(?,?,?,?,?,?)";
         $result = $conn->prepare($sql);
-        $params = [$numImmatriculation, $marque, $modele, $annee];
+        $params = [$numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar];
 
         return $result->execute($params);
     }
