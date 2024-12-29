@@ -1,11 +1,9 @@
 <?php 
-require __DIR__ . '/../connectdb/connectiondb.php';
+require_once __DIR__ . '/../connectdb/connectiondb.php';
 
 
 
 class VoitureController {
-
-    
 
     public function getAllVoitures() {
         $db = new DB();
@@ -20,12 +18,12 @@ class VoitureController {
         }
     }
 
-    public function CreatVoiture($numImmatriculation, $marque, $modele, $annee) {
+    public function CreatVoiture($numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar) {
         $db = new DB();
         $conn = $db->connect();
-        $sql = "INSERT INTO voitures(numImmatriculation, marque, modele, annee) VALUES(?,?,?,?)";
+        $sql = "INSERT INTO voitures(numImmatriculation, marque, modele, annee, priceHour, image) VALUES(?,?,?,?,?,?)";
         $result = $conn->prepare($sql);
-        $params = [$numImmatriculation, $marque, $modele, $annee];
+        $params = [$numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar];
 
         return $result->execute($params);
     }
@@ -43,12 +41,12 @@ class VoitureController {
         }
     }
 
-    public function updateVoiture($id, $numImmatriculation, $marque, $modele, $annee) {
+    public function updateVoiture($id, $numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar) {
         $db = new DB();
         $conn = $db->connect();
-        $sql = "UPDATE voitures SET numImmatriculation = ?, marque = ?, modele = ?, annee = ? WHERE id = $id";
+        $sql = "UPDATE voitures SET numImmatriculation = ?, marque = ?, modele = ?, annee = ?, priceHour = ?, image = ? WHERE id = $id";
         $result = $conn->prepare($sql);
-        $params = [$numImmatriculation, $marque, $modele, $annee];
+        $params = [$numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar];
 
         return $result->execute($params);
     }

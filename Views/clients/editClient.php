@@ -1,5 +1,5 @@
 <?php 
-    require_once('../../isOwner/isOwner.php');
+    require_once('../../isLogged/isOwner.php');
     require_once __DIR__ . '/../../controllers/UserManager.php';
     //  check if the id exist in url and get it
     if(isset($_GET['idEditUser'])) {
@@ -17,17 +17,17 @@
     }
 ?>
 
-<div class="formEdit absolute z-10 w-2/6 bg-white p-5 top-20 rounded-md hidden">
+<div class="formEdit absolute z-10 w-5/6 md:w-3/5 lg:w-2/6 bg-white p-5 top-20 rounded-md hidden">
     <h1 class="text-2xl font-semibold text-center mb-5">Edit Client</h1>
     <form action="./updateClient.php" method="POST">
     <?php if($resultClient) { ?>
-            <div class="flex gap-3 justify-between mb-4">
+            <div class="md:flex gap-3 justify-between mb-4">
                 <input type="hidden" name="idUser" value="<?php echo $resultClient['id'] ?>">
-                <div class="flex flex-col w-2/4">
+                <div class="flex flex-col w-full md:w-2/4 mb-4 md:mb-0">
                     <label class="ml-2" for="name2">Name Client <span class="text-red-600">*</span></label>
                     <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="text" value="<?php echo $resultClient['username'] ?>" name="updateName" id="name2" placeholder="Enter name client">
                 </div>
-                <div class="flex flex-col w-2/4">
+                <div class="flex flex-col w-full md:w-2/4">
                     <label class="ml-2" for="email2">Name Client <span class="text-red-600">*</span></label>
                     <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="text" value="<?php echo $resultClient['email'] ?>" name="updateEmail" id="email2" placeholder="Enter name client">
                 </div>

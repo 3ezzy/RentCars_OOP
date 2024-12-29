@@ -4,5 +4,4 @@
      if(!isset($_SESSION['user'])) {
          header('location:/views/auth/login.php');
      }
-
 ?>

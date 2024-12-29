@@ -30,7 +30,7 @@ class AuthController extends UserController {
         $db = new DB();
         $conn = $db->connect();
 
-        $existUser = $conn->query("SELECT username, email, password, role FROM users WHERE email = '$this->email'");
+        $existUser = $conn->query("SELECT * FROM users WHERE email = '$this->email'");
         $resultUser = $existUser->fetch_assoc();
 
         return $resultUser;
