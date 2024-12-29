@@ -116,3 +116,13 @@ include ('../layout/_HEAD.php');
         }
     }
 ?>
+
+<script>
+    const closeForm = document.querySelectorAll('.closeForm');
+    
+    closeForm.forEach(close => {
+        close.addEventListener('click', () => {
+            window.location.href = 'voitures.php';
+        });
+    });
+</script>

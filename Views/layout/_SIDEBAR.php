@@ -27,14 +27,14 @@
         </div>
 
         <h1 class="hidden lg:block md:mt-4 mb-1">Pages</h1>
-        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center mb-1 <?php if($page == '/views/clients/clients.php') echo 'bg-[#595480]' ?>" href="/views/clients/clients.php">
+        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center md:mb-1 <?php if($page == '/views/clients/clients.php') echo 'bg-[#595480]' ?>" href="/views/clients/clients.php">
             <?php echo "<img class='p-1 bg-emerald-600 rounded-md w-9 h-9' src='../../src/img/images_sidebar/users.svg' alt=''>" ?>
             <span class="hidden lg:block ml-2">
                 Clients
             </span>
         </a>
         
-        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center mb-1 <?php if($page == '/views/voitures/voitures.php') echo 'bg-[#595480]' ?>" href="/views/voitures/voitures.php">
+        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center md:mb-1 <?php if($page == '/views/voitures/voitures.php') echo 'bg-[#595480]' ?>" href="/views/voitures/voitures.php">
             <?php echo "<img class='p-1 bg-cyan-600 rounded-md w-9 h-9' src='../../src/img/images_sidebar/car.svg' alt=''>" ?>
             <span class="hidden lg:block ml-2">
                 Cars
@@ -48,8 +48,8 @@
             </span>
         </a>
     <?php } else { ?>
-        <h1 class="hidden lg:block md:mt-4 mb-1">Pages</h1>
-        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center mb-1 <?php if($page == '/views/pageClient/voitures.php') echo 'bg-[#595480]' ?>" href="/views/pageClient/voitures.php">
+        <h1 class="hidden lg:block md:mt-4 md:mb-1">Pages</h1>
+        <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center md:mb-1 <?php if($page == '/views/pageClient/voitures.php') echo 'bg-[#595480]' ?>" href="/views/pageClient/voitures.php">
             <?php echo "<img class='p-1 bg-cyan-600 rounded-md w-9 h-9' src='../../src/img/images_sidebar/car.svg' alt=''>" ?>
             <span class="hidden lg:block ml-2">
                 Cars
@@ -61,9 +61,9 @@
     <div>
         <a class="p-2 hover:bg-[#595480] rounded-sm flex items-center <?php if($page == '/views/auth/login.php') echo 'bg-[#595480]' ?>" href="/views/auth/logout.php">
             <?php echo "<img class='p-1 bg-red-600 rounded-md w-9 h-9' src='../../src/img/images_sidebar/log-out.svg' alt=''>" ?>
-                <span class="hidden lg:block ml-2">
-                    Log out
-                </span>
+            <span class="hidden lg:block ml-2">
+                Log out
+            </span>
         </a>
     </div>
 </div>

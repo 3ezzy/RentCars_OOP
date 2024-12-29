@@ -1,13 +1,13 @@
 <?php
     require_once('../../isLogged/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/VoitureController.php';
+    require_once __DIR__ . '/../../controllers/ClientController.php';
 
-    $clients = "SELECT * FROM clients";
-    $voitures = "SELECT * FROM voitures";
-    
-    $resultClients = mysqli_query($conn, $clients);
-    $resultVoitures = mysqli_query($conn, $voitures);
+    $clients = new ClientController();
+    $resultClients = $clients->index();
 
+    $voitures = new VoitureController();
+    $resultVoitures = $voitures->getAllVoitures();
 ?>
 
 
@@ -18,9 +18,9 @@
             <div class="flex flex-col w-2/4">
                 <label class="ml-2" for="nameClient">Name Client <span class="text-red-600">*</span></label>
                 <?php if($resultClients) { ?>
-                    <select name="nameClient" id="nameClient" class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1">
-                        <?php while($client = mysqli_fetch_assoc($resultClients)) { ?>
-                            <option value="<?php echo $client['id'] ?>"><?php echo $client['name'] ?></option>
+                    <select name="idClient" id="idClient" class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1">
+                        <?php foreach($resultClients as $client) { ?>
+                            <option value="<?php echo $client['id'] ?>"><?php echo $client['username'] ?></option>
                         <?php } ?>
                     </select>
                 <?php } ?>
@@ -29,7 +29,7 @@
                 <label class="ml-2" for="N° Immatriculation">N° Immatriculation <span class="text-red-600">*</span></label>
                 <?php if($resultVoitures) { ?>
                     <select name="immatriculation" id="N° Immatriculation" class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1">
-                        <?php while($voiture = mysqli_fetch_assoc($resultVoitures)) { ?>
+                        <?php foreach($resultVoitures as $voiture) { ?>
                             <option value="<?php echo $voiture['id'] ?>"><?php echo $voiture['numImmatriculation'] ?></option>
                         <?php } ?>
                     </select>
@@ -39,19 +39,20 @@
         <div class="flex gap-3 justify-between mb-4">
             <div class="flex flex-col w-2/4">
                 <label class="ml-2" for="dateDebut">Date Debut <span class="text-red-600">*</span></label>
-                <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="date" name="dateDebut" id="dateDebut" placeholder="Enter modele car">
+                <input class="dateDebut px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="date" name="dateDebut" id="dateDebut" placeholder="Enter modele car">
             </div>
             <div class="flex flex-col w-2/4">
                 <label class="ml-2" for="dateFin">Date Fin <span class="text-red-600">*</span></label>
-                <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="date" name="dateFin" id="dateFin" placeholder="Enter year car">
+                <input class="dateFin px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="date" name="dateFin" id="dateFin" placeholder="Enter year car">
             </div>
         </div>
-        <div class="flex flex-col">
-            <label class="ml-2" for="duree">Duree <span class="text-red-600">*</span></label>
-            <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="text" name="duree" id="duree" placeholder="Rental Period">
+        <div class="flex flex-col mt-4">
+            <label class="ml-2" for="">Duree</label>
+            <input class="inputDuree" type="hidden" name="duree">
+            <p class="duree p-2 bg-gray-300 rounded-md">0</p>
         </div>
         <div class="mt-5 flex justify-between">
-            <button id="close" class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
+            <button class="closeForm px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
             <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Confirm</button>
         </div>
     </form>

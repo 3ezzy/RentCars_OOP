@@ -41,7 +41,7 @@ if (isset($_POST['idUser'])) {
         </div>
 
         <div class="mt-10 flex justify-evenly">
-            <button id="closeDelete" type="button" class="px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
+            <button type="button" class="closeForm px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
             <button class="px-3 py-2 w-2/6 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Yes</button>
         </div>
     </form>

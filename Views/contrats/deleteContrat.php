@@ -1,6 +1,8 @@
 <?php
     require_once('../../isLogged/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/ContratController.php';
+
+    $contrat = new ContratController();
     //  check if the id exist in url and get it
     if(isset($_GET['idDeleteContrat'])) {
         $getId = $_GET['idDeleteContrat'];
@@ -11,25 +13,19 @@
             });
         </script>";
 
-        // get client when id in url equal id of client
-        $queryContrat = mysqli_query($conn, "SELECT id FROM contrats WHERE id = $getId");
+        $resultgetContrat = $contrat->getContratById($getId);
 
-        $resultgetContrat = mysqli_fetch_assoc($queryContrat);
-        
- 
     }
 
-    if(isset($_POST['idContrat'])) {
-        $idContrat = $_POST['idContrat'];
 
-        $queryDelete = "DELETE FROM contrats WHERE id = ?";
-        $params = array($idContrat);
-        $resultQueryDelete = $conn->prepare($queryDelete);
-        
-        if($resultQueryDelete->execute($params)) {
-            header('location:contrats.php?alert=success_delete');
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $idContrat = $_POST['idContrat'];
+        if($contrat->deleteContrat($idContrat)) {
+            header('location: contrats.php?alert=success_delete');
         }
     }
+
+    
 ?>
 
 <div class="formDelete absolute z-10 w-1/4 bg-white p-5 top-20 rounded-md hidden text-center">
@@ -46,17 +42,8 @@
         <input type="hidden" name="idContrat" value="<?php echo $resultgetContrat['id'] ?>">
        
         <div class="mt-10 flex justify-evenly">
-            <button id="closeDelete" type="button" class="px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
+            <button type="button" class="closeForm px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
             <button class="px-3 py-2 w-2/6 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Yes</button>
         </div>
     </form>
 </div>
-
-<script>
-    const closeDelete = document.querySelector('#closeDelete');
-    
-    closeDelete.addEventListener('click', () => {
-        window.location.href = 'contrats.php';
-    });
-
-</script>

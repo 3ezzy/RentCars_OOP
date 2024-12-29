@@ -82,31 +82,4 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     closeEdit.addEventListener('click', () => {
         window.location.href = 'voitures.php';
     });
-
-
-    const inputDuree = document.querySelector('.inputDuree');
-
-    const dateDebut = document.querySelector('.dateDebut');
-    const dateFin = document.querySelector('.dateFin');
-    
-    const duree = document.querySelector('.duree');
-    
-    function calcDifference() {
-
-        if(dateDebut.value != "" && dateFin.value != "") {
-            let date1 = new Date(`${dateDebut.value}`);
-            let date2 = new Date(`${dateFin.value}`);
-            
-            let difference = date2.getTime() - date1.getTime();
-            let days = Math.round(difference / (1000 * 3600 * 24));
-            
-            inputDuree.value = days
-            duree.innerText = days;
-        }
-    }
-    
-    dateDebut.addEventListener('input', calcDifference)
-    dateFin.addEventListener('input', calcDifference)
-    
-    
 </script>

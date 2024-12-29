@@ -49,7 +49,7 @@ if (isset($_GET['idEditVoiture'])) {
             <input class="px-3 py-2 border-2 border-gray-400 rounded-md mt-1" type="file" name="imageCar" value="<?php echo $resultVoiture['image'] ?>" id="imageCar">
         </div>
         <div class="mt-5 flex justify-between">
-            <button id="closeEdit" class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
+            <button class="closeForm px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
             <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Confirm</button>
         </div>
     </form>
