@@ -41,12 +41,12 @@ class VoitureController {
         }
     }
 
-    public function updateVoiture($id, $numImmatriculation, $marque, $modele, $annee) {
+    public function updateVoiture($id, $numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar) {
         $db = new DB();
         $conn = $db->connect();
-        $sql = "UPDATE voitures SET numImmatriculation = ?, marque = ?, modele = ?, annee = ? WHERE id = $id";
+        $sql = "UPDATE voitures SET numImmatriculation = ?, marque = ?, modele = ?, annee = ?, priceHour = ?, image = ? WHERE id = $id";
         $result = $conn->prepare($sql);
-        $params = [$numImmatriculation, $marque, $modele, $annee];
+        $params = [$numImmatriculation, $marque, $modele, $annee, $priceHour, $imageCar];
 
         return $result->execute($params);
     }
