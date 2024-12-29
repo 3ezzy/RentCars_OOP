@@ -1,4 +1,4 @@
-<?php require_once('../../isOwner/isOwner.php');?>
+<?php require_once('../../isLogged/isOwner.php');?>
 
 <div class="formAdd absolute z-10 w-5/6 md:w-3/5 lg:w-2/6 bg-white p-5 top-20 rounded-md hidden">
     <h1 class="text-2xl font-semibold text-center mb-5">Add New Client</h1>

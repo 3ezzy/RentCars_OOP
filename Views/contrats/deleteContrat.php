@@ -1,5 +1,5 @@
 <?php
-    require_once('../../isOwner/isOwner.php');
+    require_once('../../isLogged/isOwner.php');
     require_once('../../connectdb/connectiondb.php');
     //  check if the id exist in url and get it
     if(isset($_GET['idDeleteContrat'])) {
