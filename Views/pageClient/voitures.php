@@ -30,7 +30,7 @@
         <div class="xl:grid xl:grid-cols-3 lg:grid lg:grid-cols-2 mt-3 gap-3 mb-20 md:mb-0">
             <?php if($resultVoitures) { ?>
                 <?php foreach($resultVoitures as $voiture) { ?>
-                    <div class="bg-[#2a2455] hover:drop-shadow-[0px_0px_4px_#307f9b] duration-500 m-4 p-4 text-white lg:mt-0 rounded-lg">
+                    <div class="bg-[#2a2455] hover:drop-shadow-[0px_0px_4px_#307f9b] duration-500 m-1 p-4 text-white lg:mt-0 rounded-lg">
                         <div class="flex justify-between items-center">
                             <div class="flex gap-3 text-sm">
                                 <div class="flex gap-2 border p-1 rounded-md">
