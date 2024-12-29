@@ -1,27 +1,31 @@
 <?php
     require_once('../../isLogged/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/ContratController.php';
     
-    // select table contrats
-    $contrats = "SELECT contrats.*, clients.name, voitures.numImmatriculation FROM ((contrats 
-                INNER JOIN clients ON contrats.numClient = clients.id)
-                INNER JOIN voitures ON contrats.numVoiture = voitures.id)";
-    $resultContrats = mysqli_query($conn, $contrats);
+    $contrats = new ContratController();
+    $resultContrats = $contrats->getAllContrats();
 ?>
 
 
 <?php include('../layout/_HEAD.php'); ?>
-
-    <div class="md:ml-[75px] lg:ml-0 md:col-span-10 lg:col-span-8 row-span-1 py-4 px-6 bg-[#2a2455] rounded-md text-white flex justify-between">
-        <button class="showFormAdd py-2 px-4 bg-[#423c6b] rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-user-plus"></i> Add Client</button>
-        <button class="py-2 px-4 bg-[#423c6b] rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-arrow-down-a-z"></i> Sort Clients</button>
-    </div>
+<div class="lg:w-5/6 md:w-4/5 flex flex-col items-center">
+    <div class="w-full">
+        <header class="rounded-md py-4 w-full">
+            <input class="p-2 w-52 md:w-2/5 rounded-md bg-[#5b5680] focus:bg-white outline-none" type="search" placeholder="Search...">
+        </header>
     
-    <div class="md:ml-[75px] lg:ml-0 md:col-span-10 lg:col-span-8 row-span-8 flex justify-center">
-        <div class="w-full bg-[#2a2455] p-10 rounded-md">
+        <div class="py-10">
+            <h1 class="text-white text-6xl font-semibold">List of Contrats</h1>
+        </div>
+    
+        <div class="mt-2 rounded-md text-white flex">
+            <button class="showFormAdd py-2 px-4 rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-user-plus"></i> Add Contrat</button>
+            <button class="py-2 px-4 rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-arrow-down-a-z"></i> Sort Contrats</button>
+        </div>
+        <div class="hideScroll overflow-scroll w-full p-1 rounded-md">
             <table class="w-full mx-auto table-auto text-center text-gray-300">
                 <thead>
-                    <tr class="bg-[#191444]">
+                    <tr>
                         <th class="p-4">ID</th>
                         <th class="p-4">Name Client</th>
                         <th class="p-4">N° Immatriculation</th>
@@ -31,10 +35,10 @@
                         <th class="p-4">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-[#2a2455]">
                     <!-- display all contrats -->
                     <?php if($resultContrats) { ?>
-                        <?php $index = 0; while($contrat = mysqli_fetch_assoc($resultContrats)) { ?>
+                        <?php $index = 0; foreach($resultContrats as $contrat) { ?>
                             <tr class="border-t-[0.2px] border-gray-500 hover:bg-[#585286]">
                                 <td class="px-2 py-4"><?php echo $index +=1 ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['name'] ?></td>
@@ -56,12 +60,6 @@
                 </tbody>
             </table>
         </div>
-        <?php include('./addContrats.php') ?>
-        <?php include('./editContrat.php') ?>
-        <?php include('./deleteContrat.php') ?>
-        <?php include('../../alertAdd.php') ?>
-        <?php include('../../alertEdit.php') ?>
-        <?php include('../../alertDelete.php') ?>
     </div>
 
 <?php 
