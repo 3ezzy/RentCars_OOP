@@ -70,7 +70,7 @@
                                 </p>
                             </div>
                             <div>
-                                <button class="py-1 px-4 hover:bg-[#5b5680] rounded-md">Reserve now</button>
+                                <a href="./voitures.php?idVoiture=<?php echo $voiture['id'] ?>" class="py-1 px-4 hover:bg-[#5b5680] rounded-md">Reserve now</a>
                             </div>
                         </div>
                     </div>
@@ -78,6 +78,7 @@
             <?php }?>
         </div>
     </div>
+    <?php include('./reserve.php') ?>
 </div>
 
 <?php include('../layout/_FOOTER.php');?>
