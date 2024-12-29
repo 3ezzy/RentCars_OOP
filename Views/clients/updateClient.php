@@ -9,9 +9,9 @@
         $updateAddress = $_POST['updateAddress'];
         $updatePhone = $_POST['updatePhone'];
 
-        $user = new UserManager($updateName, $updateEmail, $updateAddress, $updatePhone, "", $getId);
+        $user = new UserManager();
 
-        if($user->update($getId)) {
+        if($user->update($updateName, $updateEmail, $updateAddress, $updatePhone, $getId)) {
             header('location:clients.php?alert=success_update');
         }
     }

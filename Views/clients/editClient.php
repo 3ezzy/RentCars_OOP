@@ -11,9 +11,9 @@
             });
         </script>";
 
-        $showClient = new UserManager("", "", "", "", "", $getId);
+        $showClient = new UserManager();
 
-        $resultClient = $showClient->show();
+        $resultClient = $showClient->show($getId);
     }
 ?>
 
@@ -42,7 +42,7 @@
             </div>
             <?php } ?>
         <div class="mt-5 flex justify-between">
-            <button id="closeEdit" type="button" class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400">Close</button>
+            <button type="button" class="closeForm px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400">Close</button>
             <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Confirm</button>
         </div>
     </form>

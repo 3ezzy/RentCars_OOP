@@ -11,17 +11,17 @@
             });
         </script>";
 
-        $user = new UserManager("", "", "", "", "", $getId);
+        $user = new UserManager();
 
-        $resultgetClient = $user->show();
+        $resultgetClient = $user->show($getId);
     }
 
     if(isset($_POST['idUser'])) {
         $idUser = $_POST['idUser'];
 
-        $user = new UserManager("", "", "", "", "", $idUser);
+        $user = new UserManager();
 
-        $resultDelete = $user->destroy();
+        $resultDelete = $user->destroy($idUser);
         
         if($resultDelete) {
             header('location:clients.php?alert=success_delete');
@@ -46,7 +46,7 @@
         </div>
        
         <div class="mt-10 flex justify-evenly">
-            <button id="closeDelete" type="button" class="px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
+            <button type="button" class="closeForm px-3 py-2 w-2/6 bg-red-600 text-white rounded-md hover:bg-red-400">No</button>
             <button class="px-3 py-2 w-2/6 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Yes</button>
         </div>
     </form>
