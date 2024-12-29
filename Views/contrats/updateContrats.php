@@ -1,5 +1,5 @@
 <?php
-require_once('../../isOwner/isOwner.php');
+require_once('../../isLogged/isOwner.php');
 require __DIR__ . '/../../controllers/ContratController.php';
 
 if (isset($_POST['idContrat'])) {

@@ -1,5 +1,5 @@
 <?php
-    require_once('../../isOwner/isOwner.php');
+    require_once('../../isLogged/isOwner.php');
     require_once __DIR__ . '/../../controllers/ClientController.php';
 
     $clients = new ClientController();
@@ -9,16 +9,25 @@
 
 <?php include('../layout/_HEAD.php'); ?>
 
-    <div class="md:ml-[75px] lg:ml-0 md:col-span-10 lg:col-span-8 row-span-1 py-4 px-6 bg-[#2a2455] rounded-md text-white flex justify-between">
-        <button class="showFormAdd py-2 px-4 bg-[#423c6b] rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-user-plus"></i> Add Client</button>
-        <button class="py-2 px-4 bg-[#423c6b] rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-arrow-down-a-z"></i> Sort Clients</button>
-    </div>
+
+<div class="lg:w-5/6 md:w-4/5 flex flex-col items-center">
+    <div class="w-full">
+        <header class="rounded-md py-4 w-full">
+            <input class="p-2 w-52 md:w-2/5 rounded-md bg-[#5b5680] focus:bg-white outline-none" type="search" placeholder="Search...">
+        </header>
     
-    <div class="md:ml-[75px]lg:ml-0 md:col-span-10 lg:col-span-8 col-span-8 row-span-8 flex justify-center">
-        <div class="w-full bg-[#2a2455] p-10 rounded-md">
+        <div class="py-10">
+            <h1 class="text-white text-6xl font-semibold">List of clients</h1>
+        </div>
+    
+        <div class="mt-2 rounded-md text-white flex">
+            <button class="showFormAdd py-2 px-4 rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-user-plus"></i> Add Client</button>
+            <button class="py-2 px-4 rounded-md hover:bg-[#5b5680]"><i class="fa-solid fa-arrow-down-a-z"></i> Sort Clients</button>
+        </div>
+        <div class="hideScroll overflow-scroll w-full p-1 rounded-md">
             <table class="w-full mx-auto table-auto text-center text-gray-300">
                 <thead>
-                    <tr class="bg-[#191444]">
+                    <tr>
                         <th class="p-4">ID</th>
                         <th class="p-4">Name</th>
                         <th class="p-4">Email</th>
@@ -28,7 +37,7 @@
                         <th class="p-4">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-[#2a2455]">
                     <!-- display all users -->
                     <?php if(isset($resultClients)) { ?>
                         <?php $index = 0; foreach($resultClients as $client) { ?>
@@ -42,7 +51,7 @@
                                     
                                     <?php echo ($client['role'] == 0) ? '<span class="bg-green-600 rounded-full px-2 text-sm">User</span>' : '<span class="bg-purple-600 rounded-full px-2 text-sm">Admin</span>' ?>
                                 </td>
-                                <td class="px-2 py-4">
+                                <td class="px-2 py-4 min-w-60">
                                     <a href="./clients.php?idEditUser=<?php echo $client['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-solid fa-user-pen"></i>&nbsp;Edit
                                     </a>
@@ -56,13 +65,14 @@
                 </tbody>
             </table>
         </div>
-        <?php include('./addClient.php') ?>
-        <?php include('./editClient.php') ?>
-        <?php include('./deleteClient.php') ?>
-        <?php include('../../alertAdd.php') ?>
-        <?php include('../../alertEdit.php') ?>
-        <?php include('../../alertDelete.php') ?>
     </div>
+    <?php include('./addClient.php') ?>
+    <?php include('./editClient.php') ?>
+    <?php include('./deleteClient.php') ?>
+    <?php include('../../alertAdd.php') ?>
+    <?php include('../../alertEdit.php') ?>
+    <?php include('../../alertDelete.php') ?>
+</div>
 
 <?php 
 

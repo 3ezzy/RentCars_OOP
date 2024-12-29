@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../connectdb/connectiondb.php';
+require_once __DIR__ . '/../connectdb/connectiondb.php';
 
 class ContratController
 {

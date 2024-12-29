@@ -15,7 +15,7 @@ session_start();
                 header('location: ../dashboard.php');
             } else{
                 $_SESSION['user'] = $user;
-                header('location: ../voitures/voitures.php');
+                header('location: ../pageClient/voitures.php');
             }
         } else {
             echo "password or email not correct";
