@@ -1,6 +1,7 @@
 <?php
     require_once('../../isLogged/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/ContratController.php';
+
     //  check if the id exist in url and get it
     if(isset($_GET['idDeleteContrat'])) {
         $getId = $_GET['idDeleteContrat'];
@@ -11,25 +12,18 @@
             });
         </script>";
 
-        // get client when id in url equal id of client
-        $queryContrat = mysqli_query($conn, "SELECT id FROM contrats WHERE id = $getId");
-
-        $resultgetContrat = mysqli_fetch_assoc($queryContrat);
-        
- 
     }
 
-    if(isset($_POST['idContrat'])) {
-        $idContrat = $_POST['idContrat'];
+    $contrat = new ContratController();
 
-        $queryDelete = "DELETE FROM contrats WHERE id = ?";
-        $params = array($idContrat);
-        $resultQueryDelete = $conn->prepare($queryDelete);
-        
-        if($resultQueryDelete->execute($params)) {
-            header('location:contrats.php?alert=success_delete');
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $idContrat = $_POST['idContrat'];
+        if($contrat->deleteContrat($idContrat)) {
+            header('location: contrats.php?alert=success_delete');
         }
     }
+
+    
 ?>
 
 <div class="formDelete absolute z-10 w-1/4 bg-white p-5 top-20 rounded-md hidden text-center">

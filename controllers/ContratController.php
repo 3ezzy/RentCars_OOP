@@ -71,13 +71,15 @@ class ContratController
     {
         $db = new DB();
         $conn = $db->connect();
-        $sql = "DELETE FROM contrats WHERE id = $id";
-        $result = $conn->query($sql);
+    
+        $result = $conn->prepare("DELETE FROM contrats WHERE id = ?");
+
+        $result->bind_param('i', $id);
 
         if ($result === false) {
             return ['error' => $conn->error];
         }
 
-        return $result;
+        return $result->execute();
     }
 }

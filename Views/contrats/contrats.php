@@ -63,6 +63,10 @@
     </div>
     <?php include('./addContrat.php') ?>
     <?php include('./editContrat.php') ?>
+    <?php include('./deleteContrat.php') ?>
+    <?php include('../../alertAdd.php') ?>
+    <?php include('../../alertEdit.php') ?>
+    <?php include('../../alertDelete.php') ?>
     
 </div>
 <?php 
