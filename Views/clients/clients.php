@@ -111,3 +111,13 @@
         }
     }
 ?>
+
+<script>
+    const closeForm = document.querySelectorAll('.closeForm');
+    
+    closeForm.forEach(close => {
+        close.addEventListener('click', () => {
+            window.location.href = 'clients.php';
+        });
+    });
+</script>
