@@ -46,7 +46,7 @@
                                 <td class="px-2 py-4"><?php echo $contrat['dateDebut'] ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['dateFin'] ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['duree'] ?></td>
-                                <td class="px-2 py-4">
+                                <td class="px-2 py-4 min-w-60">
                                     <a href="./contrats.php?idEditContrat=<?php echo $contrat['id'] ?>" class="showFormEdit bg-blue-700 rounded-full px-2 py-1 text-white text-[13px] hover:bg-blue-500 mr-2">
                                         <i class="fa-regular fa-pen-to-square"></i>&nbsp;Edit
                                     </a>
@@ -61,7 +61,9 @@
             </table>
         </div>
     </div>
-
+    <?php include('./addContrat.php') ?>
+    
+</div>
 <?php 
 
     include('../layout/_FOOTER.php');

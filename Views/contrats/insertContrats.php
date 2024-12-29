@@ -1,18 +1,19 @@
 <?php
     require_once('../../isLogged/isOwner.php');
-    require_once('../../connectdb/connectiondb.php');
+    require_once __DIR__ . '/../../controllers/ContratController.php';
 
-    $nameClient = isset($_POST['nameClient']) ? $_POST['nameClient'] : "";
-    $immatriculation = isset($_POST['immatriculation']) ? $_POST['immatriculation'] : "";
-    $dateDebut = isset($_POST['dateDebut']) ? $_POST['dateDebut'] : "";
-    $dateFin = isset($_POST['dateFin']) ? $_POST['dateFin'] : "";
-    $duree = isset($_POST['duree']) ? $_POST['duree'] : "";
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $idClient = $_POST['idClient'];
+        $immatriculation = $_POST['immatriculation'];
+        $dateDebut = $_POST['dateDebut'];
+        $dateFin = $_POST['dateFin'];
+        $duree = $_POST['duree'];
+    
+        $contrat = new ContratController();
 
-    $queryContrats = "INSERT INTO contrats(numClient, numVoiture, dateDebut, dateFin, duree) VALUES(?,?,?,?,?)";
-    $params = array($nameClient, $immatriculation, $dateDebut, $dateFin, $duree);
-    $resultContrats = $conn->prepare($queryContrats);
+        if($contrat->CreatContrat($idClient, $immatriculation, $dateDebut, $dateFin, $duree)) {
+            header('location:contrats.php?alert=success_add');
+        }  
+    }
 
-    if($resultContrats->execute($params)) {
-        header('location:contrats.php?alert=success_add');
-    }  
 ?>
