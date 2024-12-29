@@ -1,5 +1,5 @@
 <?php
-require_once('../../isOwner/isOwner.php');
+require_once('../../isLogged/isOwner.php');
 if (isset($_GET['idEditVoiture'])) {
     $getId = $_GET['idEditVoiture'];
 

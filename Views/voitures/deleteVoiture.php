@@ -1,5 +1,5 @@
 <?php
-require_once('../../isOwner/isOwner.php');
+require_once('../../isLogged/isOwner.php');
 require_once __DIR__ . '/../../controllers/VoitureController.php';
 $voiture = new VoitureController();
 //  check if the id exist in url and get it

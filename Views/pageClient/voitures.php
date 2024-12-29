@@ -1,5 +1,5 @@
 <?php
-    require_once '../../isOwner/isClient.php';
+    require_once '../../isLogged/isClient.php';
     require_once __DIR__ . '/../../controllers/VoitureController.php';
 
     $voitures = new VoitureController();
@@ -49,7 +49,7 @@
                             </span>
                         </div>
                         <div class="w-full h-48 flex justify-center">
-                            <img class="object-contain hover:scale-110 duration-300" src="../../src/img/cars/nissan-skyline-gt-r-nissan-gt-r-car-nissan-note-vehicle-cars-a5278b9d94a3f16f3c3b6736a1d72416.png" alt="">
+                            <img class="object-contain hover:scale-110 duration-300" src="../../src/img/cars/<?php echo $voiture['image'] ?>" alt="">
                         </div>
                         <div>
                             <span class="text-lg font-semibold text-gray-300"><?php echo $voiture['marque'] ?></span>

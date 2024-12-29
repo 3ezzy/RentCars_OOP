@@ -1,5 +1,5 @@
 <?php
-    require_once('../../isOwner/isOwner.php');
+    require_once('../../isLogged/isOwner.php');
     require_once('../../connectdb/connectiondb.php');
 
     $nameClient = isset($_POST['nameClient']) ? $_POST['nameClient'] : "";
