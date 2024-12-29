@@ -18,7 +18,7 @@ if (isset($_GET['idEditVoiture'])) {
 
 <div class="formEdit absolute z-10 w-5/6 md:w-3/5 lg:w-2/6 bg-white p-5 top-20 rounded-md hidden">
     <h1 class="text-2xl font-semibold text-center mb-5">Edit Car</h1>
-    <form action="./updateVoiture.php" method="post">
+    <form action="./updateVoiture.php" method="post" enctype="multipart/form-data">
         <div class="md:flex gap-3 justify-between mb-4">
             <div class="flex flex-col w-full md:w-2/4 mb-4 md:mb-0">
                 <label class="ml-2" for="immatriculation2">N° Immatriculation <span class="text-red-600">*</span></label>
