@@ -41,7 +41,7 @@
                         <?php $index = 0; foreach($resultContrats as $contrat) { ?>
                             <tr class="border-t-[0.2px] border-gray-500 hover:bg-[#585286]">
                                 <td class="px-2 py-4"><?php echo $index +=1 ?></td>
-                                <td class="px-2 py-4"><?php echo $contrat['name'] ?></td>
+                                <td class="px-2 py-4"><?php echo $contrat['username'] ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['numImmatriculation'] ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['dateDebut'] ?></td>
                                 <td class="px-2 py-4"><?php echo $contrat['dateFin'] ?></td>
