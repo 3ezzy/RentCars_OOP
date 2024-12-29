@@ -2,6 +2,7 @@
     require_once('../../isLogged/isOwner.php');
     require_once __DIR__ . '/../../controllers/ContratController.php';
 
+    $contrat = new ContratController();
     //  check if the id exist in url and get it
     if(isset($_GET['idDeleteContrat'])) {
         $getId = $_GET['idDeleteContrat'];
@@ -12,9 +13,10 @@
             });
         </script>";
 
+        $resultgetContrat = $contrat->getContratById($getId);
+
     }
 
-    $contrat = new ContratController();
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idContrat = $_POST['idContrat'];
