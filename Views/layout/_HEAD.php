@@ -11,8 +11,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../src/css/style.css">
 </head>
-<body class="bg-[#16113a] p-2 font-['Poppins']">
-    <div class="w-full relative md:flex md:gap-4">
+<body class="bg-[#16113a] font-['Poppins']">
+    <div class="w-full max-h-screen relative p-4 md:p-2 md:flex md:gap-4">
         <!-- include sidebar -->
          <?php 
             if($_SERVER['PHP_SELF'] == '/views/dashboard.php') {
