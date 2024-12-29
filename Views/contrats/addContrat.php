@@ -52,7 +52,7 @@
             <p class="duree p-2 bg-gray-300 rounded-md">0</p>
         </div>
         <div class="mt-5 flex justify-between">
-            <button id="close" class="px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
+            <button class="closeForm px-3 py-2 bg-red-600 text-white rounded-md hover:bg-red-400" type="button">Close</button>
             <button class="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-400" type="submit">Confirm</button>
         </div>
     </form>
