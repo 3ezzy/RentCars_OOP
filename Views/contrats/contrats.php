@@ -62,6 +62,7 @@
         </div>
     </div>
     <?php include('./addContrat.php') ?>
+    <?php include('./editContrat.php') ?>
     
 </div>
 <?php 
@@ -101,3 +102,14 @@
         }
     }
 ?>
+
+
+<script>
+    const closeForm = document.querySelectorAll('.closeForm');
+    
+    closeForm.forEach(close => {
+        close.addEventListener('click', () => {
+            window.location.href = 'contrats.php';
+        });
+    });
+</script>
