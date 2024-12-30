@@ -1,13 +1,6 @@
 <?php
     require_once __DIR__ . '/../connectdb/connectiondb.php';
 class UserManager {
-    private $id;
-    private $username;
-    private $email;
-    private $address;
-    private $numberPhone;
-    private $tableName;
-
     
     public function show($id) {
         $db = new DB();
