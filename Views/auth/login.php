@@ -1,27 +1,26 @@
 <?php
 session_start();
-    require_once __DIR__. '/../../controllers/AuthController.php';
+require_once __DIR__. '/../../controllers/AuthController.php';
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $authLogin = new AuthController("",$email, $password, "", "", "", "");
-        $user = $authLogin->login();
-
-        if($user && password_verify($password, $user['password'])) {
-            if($user['role'] == 1) {
-                $_SESSION['user'] = $user;
-                header('location: ../dashboard.php');
-            } else{
-                $_SESSION['user'] = $user;
-                header('location: ../pageClient/voitures.php');
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            
+            $authLogin = new AuthController();
+            $user = $authLogin->login($email, $password);
+            
+            if($user && password_verify($password, $user['password'])) {
+                if($user['role'] == 1) {
+                    $_SESSION['user'] = $user;
+                    header('location: ../dashboard.php');
+                } else{
+                    $_SESSION['user'] = $user;
+                    header('location: ../pageClient/voitures.php');
+                }
+            } else {
+                echo "password or email no correct";
             }
-        } else {
-            echo "password or email not correct";
-        }
-    }
-
+}
 ?>
     
 <!DOCTYPE html>
@@ -43,7 +42,6 @@ session_start();
             <div class="flex flex-col mb-4">
                 <label class="text-white mb-1" for="email">Email</label>
                 <input type="text" id="email" name="email" placeholder="Enter your email" class="p-2 rounded-md">
-                
             </div>
 
             <div class="flex flex-col">

@@ -1,39 +1,30 @@
 <?php
 
 require __DIR__ . "/../connectdb/connectiondb.php";
-require __DIR__ . "/UserController.php";
 
-class AuthController extends UserController {
-    private $password;
-    private $confirm_password;
+class AuthController {
 
-    public function __construct($username, $email, $numberPhone, $address, $password, $confirm_password, $role)
-    {
-
-        parent::__construct($username, $email, $numberPhone, $address, $role);
-        $this->password = $password;
-        $this->confirm_password = $confirm_password;
-        $this->role = $role;
-    }
-
-    public function register() {
+    public function register($username, $email, $address, $numberPhone, $password, $confirm_password, $role) {
         $db = new DB();
         $conn = $db->connect();
 
         $result = $conn->prepare("INSERT INTO users(username, email, password, address, numberPhone, role) VALUES(?,?,?,?,?,?)");
-        $params = [$this->username, $this->email, password_hash($this->password, PASSWORD_BCRYPT), $this->address, $this->numberPhone, $this->role];
+        $params = [$username, $email, password_hash($password, PASSWORD_BCRYPT), $address, $numberPhone, $role];
 
         return $result->execute($params);
     } 
 
-    public function login() {
+    public function login($email, $password) {
         $db = new DB();
         $conn = $db->connect();
 
-        $existUser = $conn->query("SELECT * FROM users WHERE email = '$this->email'");
+        $existUser = $conn->query("SELECT * FROM users WHERE email = '$email'");
+
         $resultUser = $existUser->fetch_assoc();
 
         return $resultUser;
+        
+
     }
 }
 
